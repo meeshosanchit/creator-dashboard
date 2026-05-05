@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Creator Club Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#FF1783',
+            surface: '#fcf9f8',
+            'surface-dim': '#dcd9d9',
+            'surface-container-low': '#f6f3f2',
+          },
+          fontFamily: {
+            sans: ['Epilogue', 'sans-serif'],
+          },
+          borderRadius: {
+            'custom': '8px',
+          }
+        }
+      }
+    }
+</script>
+<style data-purpose="custom-layout">
+    body {
+      background-color: #fcf9f8;
+      font-family: 'Epilogue', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .progress-gradient {
+      background: linear-gradient(90deg, #FF1783 0%, #a855f7 100%);
+    }
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+    }
+    .shadow-card {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="pb-24">
+
+<!-- Loading Screen -->
+<div id="loading" class="loading">
+  <div class="text-center">
+    <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-brand"></div>
+    <p class="mt-4 text-slate-600 font-semibold">Loading your dashboard...</p>
+  </div>
+</div>
+
+<!-- Main Dashboard -->
+<div id="dashboard" style="display: none;">
+  <!-- Header -->
+  <header class="bg-white px-5 pt-8 pb-4 rounded-b-3xl shadow-sm">
+    <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-3">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand to-purple-500 flex items-center justify-center text-white text-xl font-bold shadow-lg" id="avatar">K</div>
+        <div>
+          <h1 class="text-xl font-extrabold text-slate-900 leading-tight" id="userName">Krishna</h1>
+          <p class="text-sm font-semibold text-slate-500" id="userLevel">Level 6</p>
+        </div>
+      </div>
+      <div id="tierBadge" class="px-3 py-1.5 rounded-custom flex items-center gap-1.5 shadow-sm">
+        <span class="material-symbols-outlined text-[14px] font-bold" id="tierIcon">crown</span>
+        <span class="text-xs font-bold uppercase tracking-wider" id="tierText">Gold Tier</span>
+      </div>
+    </div>
+    
+    <!-- XP Progress -->
+    <div class="space-y-2">
+      <div class="flex justify-between items-end">
+        <span class="text-xs font-bold text-brand uppercase tracking-tighter">Current XP Progress</span>
+        <span class="text-lg font-extrabold text-slate-800"><span id="currentXP">1250</span> <span class="text-xs font-medium text-slate-400">/ <span id="maxXP">2000</span> XP</span></span>
+      </div>
+      <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+        <div class="h-full progress-gradient rounded-full transition-all duration-500" id="xpBar" style="width: 65%"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="px-4 mt-6 space-y-6">
+    <!-- Calendar -->
+    <section class="bg-white p-5 rounded-custom shadow-card">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-bold text-slate-800">May</h2>
+        <button class="text-brand text-xs font-bold uppercase">View All</button>
+      </div>
+      <div class="calendar-grid text-[10px] font-bold text-slate-400 uppercase mb-3">
+        <span>M</span><span>T</span><span>W</span><span>Th</span><span>F</span><span>Sat</span><span>S</span>
+      </div>
+      <div class="calendar-grid text-sm font-semibold text-slate-700">
+        <span class="py-2"></span><span class="py-2"></span>
+        <span class="py-2">1</span><span class="py-2">2</span>
+        <button class="py-2 bg-brand text-white rounded-lg shadow-md font-bold scale-110">3</button>
+        <span class="py-2">4</span><span class="py-2">5</span><span class="py-2">6</span>
+        <div class="py-2 relative flex flex-col items-center">
+          <span>7</span>
+          <span class="absolute -bottom-2 text-[8px] text-purple-600 font-bold whitespace-nowrap">• Holi</span>
+        </div>
+        <span class="py-2">8</span><span class="py-2">9</span><span class="py-2">10</span>
+        <div class="py-2 relative flex flex-col items-center col-span-2 bg-pink-50 rounded-md border border-pink-100">
+          <span class="text-slate-800">11-12</span>
+          <span class="text-[7px] text-brand font-bold uppercase">Maha Weekend Sale</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weekly Progress -->
+    <section class="bg-white p-5 rounded-custom shadow-card">
+      <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Weekly Progress</h2>
+      <div class="relative flex items-center justify-between px-2">
+        <div class="absolute h-0.5 bg-slate-100 left-4 right-4 top-1/2 -translate-y-4 -z-0"></div>
+        <div class="absolute h-0.5 progress-gradient left-4 w-[33%] top-1/2 -translate-y-4 -z-0"></div>
+        <div class="flex flex-col items-center gap-2 z-10">
+          <div class="w-8 h-8 rounded-full bg-brand flex items-center justify-center text-white border-4 border-white shadow-sm">
+            <span class="material-symbols-outlined text-sm font-bold" style='font-variation-settings: "FILL" 1;'>star</span>
+          </div>
+          <span class="text-[10px] font-bold text-slate-800">+100XP</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 z-10">
+          <div class="w-8 h-8 rounded-full bg-brand flex items-center justify-center text-white border-4 border-white shadow-sm ring-2 ring-brand/20">
+            <span class="material-symbols-outlined text-sm font-bold" style='font-variation-settings: "FILL" 1;'>star</span>
+          </div>
+          <span class="text-[10px] font-bold text-slate-800">+150XP</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 z-10">
+          <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-400 border-4 border-white">
+            <span class="material-symbols-outlined text-sm font-bold">star</span>
+          </div>
+          <span class="text-[10px] font-bold text-slate-400">+200XP</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 z-10">
+          <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-400 border-4 border-white">
+            <span class="material-symbols-outlined text-sm font-bold">star</span>
+          </div>
+          <span class="text-[10px] font-bold text-slate-400">+250XP</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Daily Challenges -->
+    <section class="bg-white p-5 rounded-custom shadow-card">
+      <h2 class="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <span class="w-1.5 h-4 bg-brand rounded-full"></span>
+        Daily Challenges
+      </h2>
+      <div class="space-y-3" id="missionsContainer">
+        <!-- Missions loaded dynamically -->
+      </div>
+    </section>
+
+    <!-- Personal Manager -->
+    <h2 class="text-lg font-bold text-slate-800 mb-4 uppercase tracking-widest">Personal Manager</h2>
+    <section class="bg-gradient-to-r from-slate-900 to-slate-800 p-5 rounded-custom shadow-lg text-white">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div class="flex-1">
+          <p class="text-xs text-slate-400 mb-0.5">Recommendations</p>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold truncate">Premium Collection</span>
+            <span class="material-symbols-outlined text-brand text-[16px] leading-none" style='font-variation-settings: "FILL" 1;'>local_fire_department</span>
+          </div>
+          <p class="text-[10px] text-slate-500 italic">Holi upcoming</p>
+        </div>
+        <button class="bg-brand hover:bg-pink-600 transition-colors text-white text-xs font-bold px-4 py-2.5 rounded-custom shadow-lg shadow-brand/20 whitespace-nowrap">Order Now</button>
+      </div>
+      <div class="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1">
+        <div class="flex-none w-36 bg-white rounded-lg p-2 flex flex-col gap-1.5">
+          <div class="aspect-square rounded-md overflow-hidden bg-slate-100">
+            <img alt="Product" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFFapG-s-qijerygHDZX2Q2mi068Fzh3i90ZgVc3gi90f-oMnJwBMgOMwXZeO-LkkQbWtKCmeFweRDjChLBxyuofTL_T3w8I31IHxvXRn3sUpS5CGrNpAT5V5L-uobexMMzfqfTsJSM350SmcDPluO7_S5QQlgHwSdBWGR03DAHJz6rfY52QESOzbq-j1EVilkXrIh9fvMKrfBazq7J9aNv3oksAbAh7QtKB6GNE-PRk8rbWqBVt01BydyP7Xm3mUhzDo8WQKKzw"/>
+          </div>
+          <div class="px-0.5">
+            <h3 class="text-[10px] font-bold text-slate-800 truncate">Royal Sherwani</h3>
+            <div class="flex items-center gap-1">
+              <span class="text-xs font-extrabold text-slate-900">₹284</span>
+              <span class="text-[8px] font-bold text-green-600">10% off</span>
+            </div>
+            <div class="mt-1 flex items-center">
+              <div class="bg-green-700 text-white text-[8px] font-bold px-1 py-0.5 rounded flex items-center gap-0.5">
+                4.2 <span class="material-symbols-outlined text-[8px]" style='font-variation-settings: "FILL" 1;'>star</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-none w-36 bg-white rounded-lg p-2 flex flex-col gap-1.5">
+          <div class="aspect-square rounded-md overflow-hidden bg-slate-100">
+            <img alt="Product" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbLE0SlXgVJ7sNHJho5NgV8MLuV6rTdyLsIrHF3oWRT0SuO48GxD3DrlZTjfCdWbMCV6cJdjvjRE-n3lmTWoksllXlnwY3URIq7JnbGAUJBcUtKG6WUgZSmFOsscnnumEudhVl_Z3tAQRc08zQshfZ5whpoZnxxPo1iHBrqaKzq21xnvDkiiDPOFIaoTTWWOrFz3tRRR7-aUNCXIi621Jtzg1HzGmDFI6O4giNlbR1EFfGBCRePWcy9WuOfi7aaJyl-jAtosBC4A"/>
+          </div>
+          <div class="px-0.5">
+            <h3 class="text-[10px] font-bold text-slate-800 truncate">Designer Anarkali</h3>
+            <div class="flex items-center gap-1">
+              <span class="text-xs font-extrabold text-slate-900">₹383</span>
+              <span class="text-[8px] font-bold text-green-600">10% off</span>
+            </div>
+            <div class="mt-1 flex items-center">
+              <div class="bg-green-700 text-white text-[8px] font-bold px-1 py-0.5 rounded flex items-center gap-0.5">
+                4.1 <span class="material-symbols-outlined text-[8px]" style='font-variation-settings: "FILL" 1;'>star</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-none w-36 bg-white rounded-lg p-2 flex flex-col gap-1.5">
+          <div class="aspect-square rounded-md overflow-hidden bg-slate-100">
+            <img alt="Product" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH3vcTStmzOk_WoLmF1K8i75E1zjGG0BkjMyhzznmvgzOIkyXiXFuqqq_wxfYLWDZU6ZMvl_R86LIOSrFY_Ae7OgOTW_iZ1VN4T1pm3ZGvhl8A2G-KQpCSryq-buOQhh8QBQrvE8ntvN-qYShpPHyQbPGer_Rl7JbteAkyW_35MNcqyE9o1Y9mjMtR0AZrkODWwg87EpDBmIBaEaKtOKSqSNmdd7Urwn59-Xw9CqM7hoZ_vXEaRTTo6MV7AUPqUcrEGh1YZWeMLA"/>
+          </div>
+          <div class="px-0.5">
+            <h3 class="text-[10px] font-bold text-slate-800 truncate">Banarasi Silk</h3>
+            <div class="flex items-center gap-1">
+              <span class="text-xs font-extrabold text-slate-900">₹164</span>
+              <span class="text-[8px] font-bold text-green-600">9% off</span>
+            </div>
+            <div class="mt-1 flex items-center">
+              <div class="bg-green-700 text-white text-[8px] font-bold px-1 py-0.5 rounded flex items-center gap-0.5">
+                4.1 <span class="material-symbols-outlined text-[8px]" style='font-variation-settings: "FILL" 1;'>star</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Return Product -->
+    <section class="bg-white p-5 rounded-custom shadow-card border border-slate-100">
+      <h2 class="text-sm font-bold text-slate-800 mb-4">Return Products</h2>
+      <div class="flex flex-col gap-4">
+        <div class="flex justify-between items-start">
+          <div>
+            <p class="text-xs font-bold text-slate-700">Cotton Kurta Set</p>
+            <p class="text-[10px] text-slate-400">ID: #MS-892341</p>
+          </div>
+          <div class="text-right">
+            <p class="text-[10px] font-bold text-slate-400 uppercase">Return Due Date</p>
+            <p class="text-xs font-bold text-rose-500">8/5/26</p>
+          </div>
+        </div>
+        <button class="w-full py-3 border-2 border-slate-200 text-slate-600 text-xs font-bold rounded-custom hover:bg-slate-50 active:scale-[0.98] transition-all">Place Return</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-100 flex justify-around items-center py-3 px-2 z-50 shadow-[0_-4px_10px_rgba(0,0,0,0.03)]">
+    <button class="flex flex-col items-center gap-1">
+      <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+      <span class="text-[10px] font-bold text-slate-400">Home</span>
+    </button>
+    <button class="flex flex-col items-center gap-1">
+      <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+      <span class="text-[10px] font-bold text-slate-400">Performance</span>
+    </button>
+    <button class="flex flex-col items-center gap-1">
+      <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+      <span class="text-[10px] font-bold text-slate-400">Payments</span>
+    </button>
+    <button class="flex flex-col items-center -mt-6">
+      <div class="w-14 h-14 bg-gradient-to-tr from-brand to-purple-600 rounded-2xl shadow-xl shadow-brand/40 flex items-center justify-center border-4 border-white mb-1">
+        <span class="text-white font-extrabold text-lg">XP</span>
+      </div>
+      <span class="text-[10px] font-bold text-brand">Milestone</span>
+    </button>
+    <button class="flex flex-col items-center gap-1">
+      <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+      <span class="text-[10px] font-bold text-slate-400">Help</span>
+    </button>
+  </nav>
+</div>
+
+<script>
+// Get user_id from URL parameter
+function getUserIdFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('user') || urlParams.get('user_id');
+}
+
+// Fetch user data from JSON file
+async function loadUserData(userId) {
+  try {
+    const response = await fetch(`data/${userId}.json`);
+    if (!response.ok) throw new Error('User not found');
+    return await response.json();
+  } catch (error) {
+    console.error('Error loading user data:', error);
+    return null;
+  }
+}
+
+// Update dashboard with user data
+function updateDashboard(data) {
+  // Update name and avatar
+  document.getElementById('userName').textContent = data.name;
+  document.getElementById('avatar').textContent = data.name.charAt(0).toUpperCase();
+  document.getElementById('userLevel').textContent = `Level ${data.level}`;
+  
+  // Update tier badge
+  const tierBadge = document.getElementById('tierBadge');
+  const tierText = document.getElementById('tierText');
+  const tierIcon = document.getElementById('tierIcon');
+  
+  tierText.textContent = data.tier;
+  
+  // Style tier badge based on tier
+  const tierStyles = {
+    'Gold Tier': {
+      bg: 'bg-[#FFD700]',
+      border: 'border-[#E6C200]',
+      text: 'text-amber-900',
+      icon: 'crown'
+    },
+    'Silver Tier': {
+      bg: 'bg-[#C0C0C0]',
+      border: 'border-[#A8A8A8]',
+      text: 'text-slate-700',
+      icon: 'medal'
+    },
+    'Bronze Tier': {
+      bg: 'bg-[#CD7F32]',
+      border: 'border-[#B8722C]',
+      text: 'text-amber-950',
+      icon: 'shield'
+    },
+    'Silver': {
+      bg: 'bg-[#C0C0C0]',
+      border: 'border-[#A8A8A8]',
+      text: 'text-slate-700',
+      icon: 'medal'
+    },
+    'Gold': {
+      bg: 'bg-[#FFD700]',
+      border: 'border-[#E6C200]',
+      text: 'text-amber-900',
+      icon: 'crown'
+    },
+    'Bronze': {
+      bg: 'bg-[#CD7F32]',
+      border: 'border-[#B8722C]',
+      text: 'text-amber-950',
+      icon: 'shield'
+    }
+  };
+  
+  const style = tierStyles[data.tier] || tierStyles['Silver Tier'];
+  tierBadge.className = `${style.bg} border ${style.border} px-3 py-1.5 rounded-custom flex items-center gap-1.5 shadow-sm`;
+  tierText.className = `text-xs font-bold uppercase tracking-wider ${style.text}`;
+  tierIcon.className = `material-symbols-outlined text-[14px] font-bold ${style.text}`;
+  tierIcon.textContent = style.icon;
+  
+  // Update XP
+  document.getElementById('currentXP').textContent = data.current_xp;
+  document.getElementById('maxXP').textContent = data.max_xp;
+  document.getElementById('xpBar').style.width = `${data.xp_percentage}%`;
+  
+  // Update missions
+  const missionsContainer = document.getElementById('missionsContainer');
+  missionsContainer.innerHTML = '';
+  
+  data.missions.forEach((mission, index) => {
+    const missionDiv = document.createElement('div');
+    missionDiv.className = 'flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100';
+    missionDiv.innerHTML = `
+      <div class="flex items-center gap-3">
+        <div class="w-5 h-5 rounded border-2 border-slate-300"></div>
+        <span class="text-sm font-medium text-slate-700">${mission.text}</span>
+      </div>
+      <div class="flex items-center gap-1 bg-white px-2 py-1 rounded shadow-sm border border-slate-100">
+        <span class="text-xs font-bold text-brand">${mission.xp}</span>
+        <span class="text-[10px] font-bold text-slate-400">XP</span>
+      </div>
+    `;
+    missionsContainer.appendChild(missionDiv);
+  });
+}
+
+// Show error message
+function showError(message) {
+  document.getElementById('loading').innerHTML = `
+    <div class="text-center p-6">
+      <div class="text-6xl mb-4">⚠️</div>
+      <h2 class="text-xl font-bold text-slate-800 mb-2">User Not Found</h2>
+      <p class="text-slate-600 mb-4">${message}</p>
+      <p class="text-sm text-slate-500">Please check the user_id in the URL</p>
+    </div>
+  `;
+}
+
+// Initialize dashboard
+async function init() {
+  const userId = getUserIdFromURL();
+  
+  if (!userId) {
+    showError('No user_id provided in URL. Add ?user=USER_ID to the URL.');
+    return;
+  }
+  
+  const userData = await loadUserData(userId);
+  
+  if (!userData) {
+    showError(`User ${userId} not found in the database.`);
+    return;
+  }
+  
+  updateDashboard(userData);
+  
+  // Show dashboard
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+}
+
+// Run on page load
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
