@@ -1,0 +1,35 @@
+{
+  "user_id": 546185908,
+  "name": "Creator 546185908",
+  "tier": "Bronze",
+  "level": 4,
+  "current_xp": 800,
+  "max_xp": 1500,
+  "xp_percentage": 53,
+  "missions": [
+    {
+      "text": "Gear up for the big event! Order 1 exciting products to ensure your showcase is ready for the sale.",
+      "xp": 20
+    },
+    {
+      "text": "Grow your audience! Share 1 post(s) on Facebook to tap into a new stream of shoppers.",
+      "xp": 5
+    },
+    {
+      "text": "Excite your fans! Ensure your Price score is more than 60% in your next 1 posts for a premium experience.",
+      "xp": 15
+    }
+  ],
+  "analytics": {
+    "lifetime_nmv": 1148,
+    "posts_30days": 30,
+    "nmv_7days_attribution_30days": 891.16,
+    "daily_avg_products_ordered_30days": 0.0,
+    "days_till_sale": 15
+  },
+  "quality_scores": {
+    "cta": 0.13,
+    "price": 0.22,
+    "product_shown": 0.85
+  }
+}

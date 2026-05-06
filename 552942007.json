@@ -1,0 +1,35 @@
+{
+  "user_id": 552942007,
+  "name": "Creator 552942007",
+  "tier": "Bronze",
+  "level": 4,
+  "current_xp": 800,
+  "max_xp": 1500,
+  "xp_percentage": 53,
+  "missions": [
+    {
+      "text": "Curate your collection! Order 1 personalized items to keep your shop fresh.",
+      "xp": 20
+    },
+    {
+      "text": "Maximize your reach! Post 1 times today to capture peak sale traffic.",
+      "xp": 5
+    },
+    {
+      "text": "Drive conversions! Include a Sale Callout and maintain a Quality Score > 60% in your next 1 posts.",
+      "xp": 15
+    }
+  ],
+  "analytics": {
+    "lifetime_nmv": 5327809,
+    "posts_30days": 0,
+    "nmv_7days_attribution_30days": 0.0,
+    "daily_avg_products_ordered_30days": 0.0,
+    "days_till_sale": 2
+  },
+  "quality_scores": {
+    "cta": 0.58,
+    "price": 0.91,
+    "product_shown": 0.03
+  }
+}

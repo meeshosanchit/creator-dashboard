@@ -1,0 +1,35 @@
+{
+  "user_id": 550072913,
+  "name": "Creator 550072913",
+  "tier": "Bronze",
+  "level": 4,
+  "current_xp": 800,
+  "max_xp": 1500,
+  "xp_percentage": 53,
+  "missions": [
+    {
+      "text": "Gear up for the big event! Order 1 exciting products to ensure your showcase is ready for the sale.",
+      "xp": 20
+    },
+    {
+      "text": "Boost your presence! Post 1 times today to increase your visibility.",
+      "xp": 5
+    },
+    {
+      "text": "Excite your fans! Ensure your Price score is more than 60% in your next 1 posts for a premium experience.",
+      "xp": 15
+    }
+  ],
+  "analytics": {
+    "lifetime_nmv": 476,
+    "posts_30days": 0,
+    "nmv_7days_attribution_30days": 0.0,
+    "daily_avg_products_ordered_30days": 0.0,
+    "days_till_sale": 14
+  },
+  "quality_scores": {
+    "cta": 0.11,
+    "price": 0.98,
+    "product_shown": 0.64
+  }
+}

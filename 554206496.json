@@ -1,0 +1,35 @@
+{
+  "user_id": 554206496,
+  "name": "Creator 554206496",
+  "tier": "Bronze",
+  "level": 4,
+  "current_xp": 800,
+  "max_xp": 1500,
+  "xp_percentage": 53,
+  "missions": [
+    {
+      "text": "Curate your collection! Order 1 personalized items to keep your shop fresh.",
+      "xp": 20
+    },
+    {
+      "text": "Grow your audience! Share 1 post(s) on Instagram to tap into a new stream of shoppers.",
+      "xp": 5
+    },
+    {
+      "text": "Excite your fans! Ensure your Price score is more than 60% in your next 1 posts for a premium experience.",
+      "xp": 15
+    }
+  ],
+  "analytics": {
+    "lifetime_nmv": 1202,
+    "posts_30days": 19,
+    "nmv_7days_attribution_30days": 1565.62,
+    "daily_avg_products_ordered_30days": 1.2,
+    "days_till_sale": 16
+  },
+  "quality_scores": {
+    "cta": 0.73,
+    "price": 0.79,
+    "product_shown": 0.12
+  }
+}
