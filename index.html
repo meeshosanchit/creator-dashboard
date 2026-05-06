@@ -288,7 +288,7 @@ function getUserIdFromURL() {
 // Fetch user data from JSON file
 async function loadUserData(userId) {
   try {
-    const response = await fetch(`data/${userId}.json`);
+    const response = await fetch(`${userId}.json`);
     if (!response.ok) throw new Error('User not found');
     return await response.json();
   } catch (error) {
